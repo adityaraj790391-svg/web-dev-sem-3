@@ -35,10 +35,40 @@ fs.readFile("data.txt", "utf-8", (err,res)=>{
     }
 });
 
-fs.appendFile("data.txt", "\n Origin Stone ", (err)=>{
+fs.appendFile("data.txt", "\nOrigin Stone ", (err)=>{
     if(err){
         console.log(err);
     }else{
         console.log("File updated successfully");
     }
 });
+
+fs.unlink("data.txt", (err)=>{
+    if(err){
+        console.log(err);
+    }else{
+        console.log("File deleted successfully");
+    }
+});
+
+
+const data = {energy: "Shadow Energy", power: "Infinite", origin: "Unknown"};
+
+fs.writeFile("data.json", JSON.stringify(data,null,2), (err)=>{
+    if(err){
+        console.log(err);
+    }else{
+        console.log("Data saved successfully");
+    }
+});
+
+fs.readFile("data.json", "utf-8", (err,res)=>{
+    if(err){
+        console.log(err);
+    }else{
+        console.log(res);
+    }
+});
+
+
+
