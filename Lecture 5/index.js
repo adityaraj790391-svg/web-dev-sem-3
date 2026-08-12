@@ -34,3 +34,11 @@ fs.readFile("data.txt", "utf-8", (err,res)=>{
         console.log(res);
     }
 });
+
+fs.appendFile("data.txt", "\n Origin Stone ", (err)=>{
+    if(err){
+        console.log(err);
+    }else{
+        console.log("File updated successfully");
+    }
+});
