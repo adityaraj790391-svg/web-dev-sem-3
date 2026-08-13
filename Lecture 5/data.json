@@ -1,5 +1,10 @@
-{
-  "energy": "Shadow Energy",
-  "power": "Infinite",
-  "origin": "Unknown"
-}
+[
+  {
+    "energy": "Shadow Energy",
+    "power": "Infinite",
+    "origin": "Unknown"
+  },
+  {
+    "newtechnique": "Meteor Shower"
+  }
+]

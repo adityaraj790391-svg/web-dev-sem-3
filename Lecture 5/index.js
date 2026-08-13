@@ -54,7 +54,7 @@ fs.unlink("data.txt", (err)=>{
 
 const data = {energy: "Shadow Energy", power: "Infinite", origin: "Unknown"};
 
-fs.writeFile("data.json", JSON.stringify(data,null,2), (err)=>{
+fs.writeFile("data.json", JSON.stringify([data],null,2), (err)=>{
     if(err){
         console.log(err);
     }else{
@@ -62,13 +62,33 @@ fs.writeFile("data.json", JSON.stringify(data,null,2), (err)=>{
     }
 });
 
+let newdata = {newtechnique: "Meteor Shower"};
+
 fs.readFile("data.json", "utf-8", (err,res)=>{
     if(err){
         console.log(err);
     }else{
-        console.log(res);
+        let temp = JSON.parse(res);
+        console.log(temp);
+        temp.push(newdata);
+        fs.writeFile("data.json", JSON.stringify(temp,null,2), (err)=>{
+            if(err){
+                console.log(err);
+            }else{
+                console.log("Data updated successfully");
+            }
+        });
     }
 });
+
+
+
+
+
+
+
+
+
 
 
 
