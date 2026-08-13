@@ -118,6 +118,18 @@ console.log(encrypt1);
 console.log(encrypt2);
 
 
+const dns = require("dns");
+
+dns.lookup("www.asurascans.com", (err, address, family)=>{
+    if(err){
+        console.log(err);
+    }else{
+        console.log(address);
+        console.log(family);
+    }
+});
+
+
 
 
 
