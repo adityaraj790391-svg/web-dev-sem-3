@@ -32,3 +32,5 @@ let notes  = [
     author: "LEE GEON"
   }
 ]
+
+module.exports = {notes};
