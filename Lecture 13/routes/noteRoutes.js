@@ -1,8 +1,19 @@
-const express = require('express');
-const router = express.Router();
-const { getNotes } = require('../controllers/notesController');
+// const { getNotes, createNote } = require('../controllers/notesController');
+// const { isAuthorized } = require('../middlewares/isAuthorized');
 
-router.get('/notes', getNotes);
-router.post('/createnotes', createNote);
+// router.get('/notes',isAuthorized, getNotes);
+// router.post('/createnotes', createNote);
 
-module.exports = router;
+
+const express = require("express")
+const { getNotes, createNote, getNoteById, updateNote, deleteNote } = require("../controllers/notesController")
+const { isAuthorized, isLoggedIn } = require("../middlewares/isAuthorized")
+const router = express.Router()
+
+router.get("/notes",isAuthorized,isLoggedIn,getNotes)
+router.get("/notes/:id",isAuthorized,isLoggedIn,getNoteById)
+router.post("/notes",createNote)
+router.put("/update-note/:id",updateNote)
+router.delete("/delete-note/:id",deleteNote)
+
+module.exports = router
