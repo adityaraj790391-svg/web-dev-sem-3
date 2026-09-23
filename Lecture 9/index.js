@@ -35,6 +35,13 @@ app.put('/student/:id', (req,res) => {
   res.status(200).send("Ascended");
 })
 
+app.delete('/student/:id', (req,res) => {
+  console.log("server is running on http://localhost:3000")
+  let id = req.params.id
+  students.splice(id, 1);
+  res.status(200).send("destroyed");
+
+})
 
 app.listen(3000, () => {
   console.log("server is running on http://localhost:3000")
