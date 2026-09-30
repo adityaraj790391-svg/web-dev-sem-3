@@ -52,96 +52,115 @@ use("AiMl");
 //   }}
 // ])
 
-db.students.aggregate([
-  {$match: {
-    'marks.math': {
-      $gt : 80
-    }
-  }}
-])
+// db.students.aggregate([
+//   {$match: {
+//     'marks.math': {
+//       $gt : 80
+//     }
+//   }}
+// ])
 
 // find no of students in each course
 
-db.students.aggregate([
-  {
-    $group: {
-      _id : '$course',
-      numberofstudents: {
-        $sum : 1
-      }
-    }
-  }
-])
+// db.students.aggregate([
+//   {
+//     $group: {
+//       _id : '$course',
+//       numberofstudents: {
+//         $sum : 1
+//       }
+//     }
+//   }
+// ])
 
 
 // find the avearage attendance of each course
 
 
-db.students.aggregate([
-  {
-    $group: {
-      _id : '$course',
-      averageattendance : {
-        $avg : '$attendance'
-      }
-    }
-  }
-])
+// db.students.aggregate([
+//   {
+//     $group: {
+//       _id : '$course',
+//       averageattendance : {
+//         $avg : '$attendance'
+//       }
+//     }
+//   }
+// ])
 
 
 // find max math marks in each course
 
-db.students.aggregate([
-  {
-    $group: {
-      _id : '$course', 
-      maxmathmarks: {
-        $max : '$marks.math'
-      }
-    }
-  }
-])
+// db.students.aggregate([
+//   {
+//     $group: {
+//       _id : '$course', 
+//       maxmathmarks: {
+//         $max : '$marks.math'
+//       }
+//     }
+//   }
+// ])
+
 
 // find min math marks in each course
 
 
-db.students.aggregate([
-  {
-    $group: {
-      _id : '$course', 
-      minmathmarks: {
-        $min : '$marks.math'
-      }
-    }
-  }
-])
+// db.students.aggregate([
+//   {
+//     $group: {
+//       _id : '$course', 
+//       minmathmarks: {
+//         $min : '$marks.math'
+//       }
+//     }
+//   }
+// ])
 
 
 // find avg math marks in each course
 
 
-db.students.aggregate([
-  {
-    $group: {
-      _id : '$course', 
-      avgmathmarks: {
-        $avg : '$marks.math'
-      }
-    }
-  }
-])
+// db.students.aggregate([
+//   {
+//     $group: {
+//       _id : '$course', 
+//       avgmathmarks: {
+//         $avg : '$marks.math'
+//       }
+//     }
+//   }
+// ])
 
 
 // find total students in each city
 
 
+// db.students.aggregate([
+//   {
+//     $group: {
+//       _id : '$city',
+//       totalnumberofstudents: {
+//         $sum : 1
+//       }
+//     }
+//   }
+// ])
+
+
 db.students.aggregate([
-  {
-    $group: {
-      _id : '$city',
-      totalnumberofstudents: {
-        $sum : 1
-      }
-    }
+  {$match: {
+    'course': 'CSE'
   }
+},
+{
+   $group: {
+     _id : null, 
+     avgatt : {
+      $avg : "attendance"
+     }
+   }
+}
+
 ])
+
