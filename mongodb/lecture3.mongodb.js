@@ -135,3 +135,13 @@ db.students.aggregate([
 // find total students in each city
 
 
+db.students.aggregate([
+  {
+    $group: {
+      _id : '$city',
+      totalnumberofstudents: {
+        $sum : 1
+      }
+    }
+  }
+])
