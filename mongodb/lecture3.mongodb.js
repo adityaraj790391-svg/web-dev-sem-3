@@ -81,11 +81,57 @@ db.students.aggregate([
   {
     $group: {
       _id : '$course',
-      numberofstudents: {
-        $sum : 1
+      averageattendance : {
+        $avg : '$attendance'
       }
     }
   }
 ])
+
+
+// find max math marks in each course
+
+db.students.aggregate([
+  {
+    $group: {
+      _id : '$course', 
+      maxmathmarks: {
+        $max : '$marks.math'
+      }
+    }
+  }
+])
+
+// find min math marks in each course
+
+
+db.students.aggregate([
+  {
+    $group: {
+      _id : '$course', 
+      minmathmarks: {
+        $min : '$marks.math'
+      }
+    }
+  }
+])
+
+
+// find avg math marks in each course
+
+
+db.students.aggregate([
+  {
+    $group: {
+      _id : '$course', 
+      avgmathmarks: {
+        $avg : '$marks.math'
+      }
+    }
+  }
+])
+
+
+// find total students in each city
 
 
