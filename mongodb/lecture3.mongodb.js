@@ -60,7 +60,32 @@ db.students.aggregate([
   }}
 ])
 
+// find no of students in each course
+
+db.students.aggregate([
+  {
+    $group: {
+      _id : '$course',
+      numberofstudents: {
+        $sum : 1
+      }
+    }
+  }
+])
 
 
+// find the avearage attendance of each course
+
+
+db.students.aggregate([
+  {
+    $group: {
+      _id : '$course',
+      numberofstudents: {
+        $sum : 1
+      }
+    }
+  }
+])
 
 
