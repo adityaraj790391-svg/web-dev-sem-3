@@ -8,10 +8,12 @@ const app = express();
 const notesRoutes = require('./routes/noteRoutes');
 const userRoutes = require('./routes/userRoutes');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('combined'));
+
 app.use('/api', notesRoutes);
 app.use('/user', userRoutes);
-app.use(express.json());
-app.use(morgan('combined'));
 
 // app.use('/user', require('./routes/userRoutes.js'));
 
