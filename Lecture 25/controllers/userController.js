@@ -1,3 +1,5 @@
+const userSchema = require('../models/userSchema');
+
 const signup = async (req, res) => {
 
   let {name, email, password, age} = req.body;
