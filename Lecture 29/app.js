@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 app.use(express.urlencoded({extended: true}));
 // app.post('/api/createnotes', createNote);
 
-const PORT = 3000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

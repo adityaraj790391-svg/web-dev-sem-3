@@ -1,38 +1,48 @@
 const userSchema = require('../models/user');
 
 const signup = async (req, res) => {
+    const { name, email, password, age, course } = req.body;
 
-  let {name, email, password, age} = req.body;
-  if(!name || !email || !password || !age){
-    return res.status(403).send('Please fill all the fields');
-  }
+    if (!name || !email || !password || !age || !course) {
+        return res.status(400).send('Please fill all the fields');
+    }
 
-  let user = await userSchema.create({name, email, password, age});
-  res.status(201).send('User created successfully');
+    const user = await userSchema.create({
+        name,
+        email,
+        password,
+        age,
+        course
+    });
 
+    return res.status(201).send('User created successfully');
 };
 
 
 const Login = async(req, res) => {
-  let {email, password} = req.body;
+  const Login = async (req, res) => {
+    const { email, password } = req.body;
 
-  if(!email || !password){
+    if (!email || !password) {
+        return res.status(400).send('Invalid Credentials');
+    }
 
-    return res.status(401).send('Invalid Credentials')
-  }
+    const user = await userSchema.findOne({ email });
 
-  let user = await userSchema.findOne({email});
+    if (!user || password !== user.password) {
+        return res.status(401).send('Unauthorized');
+    }
 
-  if(password !== user.password){
-    return res.status(401).send('Unauthorized');
-
-  res.status(200).json({
-
-  'message' : 'Login successfully',
-  data : user
-      
-  })
-  }
+    return res.status(200).json({
+        message: 'Login successful',
+        data: {
+            name: user.name,
+            email: user.email,
+            age: user.age,
+            course: user.course
+        }
+    });
+};
 }
 
 module.exports = { signup, Login};
