@@ -1,7 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const  morgan = require('morgan');
 const db = require('./config/db');
-require('dotenv').config();
 
 db();
 
@@ -25,6 +25,8 @@ app.get('/', (req, res) => {
 app.use(express.urlencoded({extended: true}));
 // app.post('/api/createnotes', createNote);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
