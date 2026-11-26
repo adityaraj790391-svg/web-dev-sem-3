@@ -1,12 +1,8 @@
-// const math = require('./math.js');
-import {add, sub, mul, div} from './math.js';
+// const math = require("./math")
 
-// console.log(math.add(2, 3));
-// console.log(math.sub(2, 3));
-// console.log(math.mul(2, 3));
-// console.log(math.div(2, 3));
+import {add,subtract} from "./math.js"
 
-console.log(add(2, 3));
-console.log(sub(2, 3));
-console.log(mul(2, 3));
-console.log(div(2, 3));
+// console.log(math.add(10,5))
+
+console.log(add(10,5))
+console.log(subtract(5,3))

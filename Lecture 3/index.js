@@ -1,7 +1,5 @@
-console.log("First Node Program")
-
-function king() {
-    console.log("First Node Program")
+function dummy(){
+  console.log("First node program")
 }
 
-king()
+dummy()

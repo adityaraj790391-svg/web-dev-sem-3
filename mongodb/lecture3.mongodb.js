@@ -1,166 +1,209 @@
-use("AiMl");
+use("AiMl")
 
 // db.students.aggregate([
 
-//   {// match
-//     $match:{
-//       attendance:{
-//         $gte:80
-//       }
+//     {//match
+       
+//         $match:{
+//             attendance:{
+//                 $gte:80
+//             }
+//         }
+//     },
+//     {//group
+    
+//         $group:{
+
+//             _id:"$course"
+//         }
+
 //     }
+//     // {//project
 
-//   },
-//   {// group
+//     // }
+// ])
 
-//     $group:{
-//       _id:'$course'
+
+// db.students.find({"course":"CSE"})
+
+
+// db.students.aggregate([
+//     {$project:{_id:0}}
+// ])
+
+// db.students.aggregate([
+//     {
+//         $match:{
+//             "course":"CSE"
+//         }
 //     }
-
-//   }
-// ])
-
-// db.students.aggregate([
-//   {$project: {
-//     name: 1, course: 1
-//   }}
 // ])
 
 
-// Find students who belong to cse source
 
 // db.students.aggregate([
-//   {$match: {
-//     'course': 'CSE'
-//   }}
-// ])
-
-
-// db.students.aggregate([
-//   {$match: {
-//     'attendance': {
-//       $gt : 85
+//     {
+//         $match:{
+//             "attendance":{
+//                 $gt:85
+//             }
+//         }
 //     }
-//   }}
 // ])
 
 
 // db.students.aggregate([
-//   {$match: {
-//     'course': 'BCA', 'attendance' :{
-//       $gte : 85
+//     {
+//         $match:{
+//             "course":"BCA",
+//             "attendance":{
+//                 $gt:80
+//             }
+//         }
 //     }
-//   }}
 // ])
 
-// db.students.aggregate([
-//   {$match: {
-//     'marks.math': {
-//       $gt : 80
-//     }
-//   }}
-// ])
-
-// find no of students in each course
-
-// db.students.aggregate([
-//   {
-//     $group: {
-//       _id : '$course',
-//       numberofstudents: {
-//         $sum : 1
-//       }
-//     }
-//   }
-// ])
-
-
-// find the avearage attendance of each course
 
 
 // db.students.aggregate([
-//   {
-//     $group: {
-//       _id : '$course',
-//       averageattendance : {
-//         $avg : '$attendance'
-//       }
+//     {
+//         $match:{
+//             "marks.math":{
+                
+//                     $gt:80
+                
+//             }
+//         }
 //     }
-//   }
 // ])
-
-
-// find max math marks in each course
 
 // db.students.aggregate([
-//   {
-//     $group: {
-//       _id : '$course', 
-//       maxmathmarks: {
-//         $max : '$marks.math'
-//       }
+//     {
+//         $group:{
+//             _id:"$course",
+//             NumberofStudents:{
+//                 $sum:1
+//             }
+//         }
 //     }
-//   }
 // ])
-
-
-// find min math marks in each course
 
 
 // db.students.aggregate([
-//   {
-//     $group: {
-//       _id : '$course', 
-//       minmathmarks: {
-//         $min : '$marks.math'
-//       }
+//     {
+//         $group:{
+//             _id:"$course",
+//             avgAttendance:{
+//                 $avg:"$attendance"
+//             }
+//         }
 //     }
-//   }
 // ])
-
-
-// find avg math marks in each course
 
 
 // db.students.aggregate([
-//   {
-//     $group: {
-//       _id : '$course', 
-//       avgmathmarks: {
-//         $avg : '$marks.math'
-//       }
+//     {
+//         $group:{
+//             _id:"$course",
+//             MaxMathMarks:{
+//                 $max:"$marks.math"
+//             }
+//         }
 //     }
-//   }
 // ])
 
-
-// find total students in each city
+// db.students.aggregate([
+//     {
+//         $group:{
+//             _id:"$course",
+//             avgMathMarks:{
+//                 $avg:"$marks.math"
+//             }
+//         }
+//     }
+// ])
 
 
 // db.students.aggregate([
-//   {
-//     $group: {
-//       _id : '$city',
-//       totalnumberofstudents: {
-//         $sum : 1
-//       }
+//     {
+//         $group:{
+//             _id:"$city",
+//             totalStudents:{
+//                 $sum:1
+//             }
+//         }
 //     }
-//   }
+// ])
+
+// db.students.aggregate([
+//     {
+//         $match:{
+//             "course":"CSE"
+//         }
+//     },
+//     {
+//         $group:{
+//             _id:null,
+//             avgAtt:{
+//                 $avg:"$attendance"
+//             }
+//         }
+//     }
 // ])
 
 
-db.students.aggregate([
-  {$match: {
-    'course': 'CSE'
-  }
-},
-{
-   $group: {
-     _id : null, 
-     avgatt : {
-      $avg : "attendance"
-     }
-   }
-}
+// db.students.aggregate([
+//     {
+//         $match:{
+//             "course":"BCA"
+//         }
+//     },
+//     {
+//         $group:{
+//             _id:null,
+//             maxMathMarks:{
+//                 $max:"$marks.math"
+//             }
+//         }
+//     }
+// ])
 
-])
+
+// db.students.aggregate([
+
+//     {
+//         $match:{
+//             "course":"CSE",
+//             "attendance":{
+//                 $gt:80
+//             }
+//         }
+//     },
+//     {
+//         $group:{
+//             _id:null,
+//             numberofSt:{
+//                 $sum:1
+//             }
+//         }
+//     }
+// ])
+
+
+// db.students.aggregate([
+//     {
+//         $project:{
+//             name:1,
+//             totalmarks:{
+//                 $add:["$marks.math","$marks.dbms","$marks.web"]
+//             }
+//         }
+//     },
+//     {
+//         $sort:{
+//             "totalmarks":-1
+//         }
+//     }
+// ])
+
 

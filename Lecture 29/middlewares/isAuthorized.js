@@ -1,18 +1,27 @@
-const isAuthorized = (req, res, next) => {
-  let token = req.headers.cookie;
+const jwt = require("jsonwebtoken")
+const isAuthorized = (req,res,next)=>{
+    let token =  req.headers.cookie;
 
-  if ((!token) || (token !== 123987)){
-    return res.status(401).send("Unauthorized Access")
-  }
-  next();
+    if((!token) || (token!=123987)){
+     return res.status(401).send("Kon hai bhai tu")
+    }
+    next()
+
 }
 
-const isLoggedIn = (req, res, next) => {
-  let login = false;
-   if(!login){
-    return res.status(401).send("Please Login First")
+
+const isLoggedIn =async (req,res,next)=>{
+   let token = req.cookies.token;
+
+   if(!token){
+    return res.status(401).send("Unauthorized")
    }
-  next();
+  let data = await jwt.verify(token,process.env.SECRET_KEY)
+
+ 
+ req.user =data.user
+  next()
+
 }
 
-module.exports = {isAuthorized, isLoggedIn};
+module.exports = {isAuthorized,isLoggedIn}

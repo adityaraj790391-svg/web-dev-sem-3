@@ -1,10 +1,3 @@
-// const { getNotes, createNote } = require('../controllers/notesController');
-// const { isAuthorized } = require('../middlewares/isAuthorized');
-
-// router.get('/notes',isAuthorized, getNotes);
-// router.post('/createnotes', createNote);
-
-
 const express = require("express")
 const { getNotes, createNote, getNoteById, updateNote, deleteNote } = require("../controllers/notesController")
 const { isAuthorized, isLoggedIn } = require("../middlewares/isAuthorized")
